@@ -20,4 +20,12 @@ def home(request):
         return render(request, 'home.html', {})
 
 def logout_user(request):
+    logout(request)
+    messages.success(request, 'Logged out successfully')
+    return redirect('home')
+
+def register_user(request):
     pass
+
+
+
