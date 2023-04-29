@@ -25,7 +25,7 @@ def logout_user(request):
     return redirect('home')
 
 def register_user(request):
-    pass
+    return render(request, 'register.html', {})
 
 
 
