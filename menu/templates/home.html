@@ -4,7 +4,10 @@
 
 {% if user.is_authenticated %}
 {% if menu %}
+<div class="row">
+    
 {% for menu in menu %}
+<div class="col-sm-4 mb-3 mb-sm-0">
 <div class="card" style="width: 18rem;">
   <img src="{{ menu.imageURL }}" class="card-img-top" alt="...">
   <div class="card-body">
@@ -13,7 +16,10 @@
     <a href="#" class="btn btn-primary">order</a>
   </div>
 </div>
+</div>
 {% endfor %}
+  
+</div>
 {% endif %}
 
 {% else %}
