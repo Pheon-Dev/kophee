@@ -37,23 +37,32 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         {% if user.is_authenticated %}
         <li class="nav-item">
-          <a href="{% url 'add_item' %}" class="nav-link">add item</a>
+          <a href="{% url 'add_item' %}" class="btn btn-outline-success btn-sm">+ add item</a>
         </li>
-        <li class="nav-item">
-          <a href="{% url 'logout' %}" class="nav-link">logout</a>
-        </li>
+        <!-- <li class="nav-item"> -->
+        <!--   <a href="{% url 'logout' %}" class="nav-link">logout</a> -->
+        <!-- </li> -->
 
         {% else %}
-        <li class="nav-item">
-          <a href="{% url 'home' %}" class="nav-link">login</a>
-        </li>
-        <li class="nav-item">
-          <a href="{% url 'register' %}" class="nav-link">register</a>
-        </li>
+        <!-- <li class="nav-item"> -->
+        <!--   <a href="{% url 'home' %}" class="nav-link">login</a> -->
+        <!-- </li> -->
+        <!-- <li class="nav-item"> -->
+        <!--   <a href="{% url 'register' %}" class="nav-link">register</a> -->
+        <!-- </li> -->
         {% endif %}
       </ul>
+      <div class="d-flex" role="search">
+        {% if user.is_authenticated %}
+        <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+        <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+        <a href="{% url 'logout' %}" class="btn btn-outline-danger" type="submit">logout</a>
+        {% else %}
+        <a href="{% url 'home' %}" class="btn btn-outline-info me-3">login</a>
+        <a href="{% url 'register' %}" class="btn btn-outline-success">register</a>
+        {% endif %}
 
-      </ul>
+      </div>
     </div>
   </div>
 </nav>
