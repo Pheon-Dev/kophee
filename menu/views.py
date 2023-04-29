@@ -83,7 +83,7 @@ def update_item(request, pk):
             form.save()
             messages.success(request, "Item updated successfully")
             return redirect('home')
-        return render(request, 'update_item.html', {'form': form})
+        return render(request, 'update_item.html', {'form': form, 'current_item': current_item})
     else:
         messages.success(request, "You must be logged in to update an item ...")
         return redirect('home')

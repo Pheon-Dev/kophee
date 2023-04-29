@@ -5,12 +5,13 @@
   <h1>Update Item</h1>
   <br />
 
-  <form method="POST">
+  <form method="POST" enctype='multipart/form-data'>
     {% csrf_token %}
 
     {{ form.as_p }}
 
     <br />
+    <a href="{% url 'menu_item' current_item.id %}" class="btn btn-secondary">← back</a>
     <button type="submit" class="btn btn-info">Update Item</button>
 
   </form>
