@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import SignUpForm
+from .forms import SignUpForm, AddItemForm
 from .models import Menu
 
 def home(request):
@@ -60,4 +60,17 @@ def delete_item(request, pk):
         return redirect('home')
     else:
         messages.success(request, "You must be logged in to delete an item")
+        return redirect('home')
+
+def add_item(request):
+    form = AddItemForm(request.POST or None)
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            if form.is_valid():
+                add_item = form.save()
+                messages.success(request, "Item added successfully")
+                return redirect('home')
+        return render(request, 'add_item.html', {'form': form})
+    else:
+        messages.success(request, "You must be logged in to add and item ...")
         return redirect('home')

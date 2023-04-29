@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
+from .models import Menu
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(label="", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Email Address'}))
@@ -28,3 +29,14 @@ class SignUpForm(UserCreationForm):
         self.fields['password2'].widget.attrs['placeholder'] = 'Confirm Password'
         self.fields['password2'].label = ''
         self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
+
+class AddItemForm(forms.ModelForm):
+    # item = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={'placeholder':'Item Name', "class":'form-control'}), label='')
+    # price = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={'placeholder':'Item Price', "class":'form-control'}), label='')
+    # description = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={'placeholder':'Item Description', "class":'form-control'}), label='')
+    # image = forms.ImageField(required=True, widget=forms.widgets.TextInput(attrs={'placeholder':'Item Description', "class":'form-control'}), label='')
+
+    class Meta:
+        model = Menu
+        fields = '__all__'
+        exclude = ('user',)
