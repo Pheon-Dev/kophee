@@ -74,3 +74,16 @@ def add_item(request):
     else:
         messages.success(request, "You must be logged in to add and item ...")
         return redirect('home')
+
+def update_item(request, pk):
+    if request.user.is_authenticated:
+        current_item = Menu.objects.get(id=pk)
+        form = AddItemForm(request.POST or None, request.FILES or None, instance=current_item)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Item updated successfully")
+            return redirect('home')
+        return render(request, 'update_item.html', {'form': form})
+    else:
+        messages.success(request, "You must be logged in to update an item ...")
+        return redirect('home')
