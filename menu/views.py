@@ -63,11 +63,11 @@ def delete_item(request, pk):
         return redirect('home')
 
 def add_item(request):
-    form = AddItemForm(request.POST or None)
+    form = AddItemForm(request.POST or None, request.FILES or None)
     if request.user.is_authenticated:
         if request.method == "POST":
             if form.is_valid():
-                add_item = form.save()
+                a = form.save()
                 messages.success(request, "Item added successfully")
                 return redirect('home')
         return render(request, 'add_item.html', {'form': form})

@@ -4,12 +4,12 @@
 <div class="col-md-6 offset-md-3">
   <h1>Add Item</h1>
 
-  <form method="POST" action="{% url 'add_item' %}">
+  <form method="POST" action="{% url 'add_item' %}" enctype='multipart/form-data'>
     {% csrf_token %}
     {{ form.as_p }}
     <br>
     <button type="submit">Add Item</button>
-    <a href="{% url 'home' %}" class="btn btn-secondary">back</a>
+    <a href="{% url 'home' %}" class="btn btn-secondary m-3">back</a>
   </form>
 </div>
 {% endblock %}

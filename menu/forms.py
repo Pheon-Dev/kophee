@@ -31,12 +31,12 @@ class SignUpForm(UserCreationForm):
         self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
 
 class AddItemForm(forms.ModelForm):
-    # item = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={'placeholder':'Item Name', "class":'form-control'}), label='')
-    # price = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={'placeholder':'Item Price', "class":'form-control'}), label='')
-    # description = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={'placeholder':'Item Description', "class":'form-control'}), label='')
-    # image = forms.ImageField(required=True, widget=forms.widgets.TextInput(attrs={'placeholder':'Item Description', "class":'form-control'}), label='')
+    item = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={'placeholder':'Item Name', "class":'form-control'}), label='')
+    price = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={'placeholder':'Item Price', "class":'form-control'}), label='')
+    description = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={'placeholder':'Item Description', "class":'form-control'}), label='')
+    image = forms.ImageField(required=True)
 
     class Meta:
         model = Menu
-        fields = '__all__'
+        # fields = '__all__'
         exclude = ('user',)
