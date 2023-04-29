@@ -4,20 +4,27 @@
 
 {% if user.is_authenticated %}
 {% if menu %}
-<div class="row">
+<div class="row row-cols-1 row-cols-md-3 g-4">
     
-{% for menu in menu %}
-<div class="col-sm-4 mb-3 mb-sm-0">
-<div class="card" style="width: 18rem;">
-  <img src="{{ menu.imageURL }}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">{{ menu.item }} {{ menu.price }}/=</h5>
-    <p class="card-text">{{ menu.description }}</p>
-    <a href="#" class="btn btn-primary">order</a>
-  </div>
-</div>
-</div>
-{% endfor %}
+  {% for menu in menu %}
+    <div class="col">
+      <div class="card h-100 text-center mb-3">
+        <div class="card-header">
+          <strong class="text-body-secondary">{{ menu.item }}</strong>
+        </div>
+        <a href="{% url 'menu_item' menu.id %}">
+          <img src="{{ menu.imageURL }}" class="card-img-bottom" alt="...">
+        </a>
+        <div class="card-body">
+          <h5 class="card-title">{{ menu.price }}/=</h5>
+          <p class="card-text">{{ menu.description }}</p>
+        </div>
+        <div class="card-footer">
+          <a href="#" class="btn btn-primary">order</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
   
 </div>
 {% endif %}

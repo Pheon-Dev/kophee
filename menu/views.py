@@ -44,5 +44,20 @@ def register_user(request):
         return render(request, 'register.html', {'form': form})
     return render(request, 'register.html', {'form':form})
 
+def menu_item(request, pk):
+    if request.user.is_authenticated:
+        menu_item = Menu.objects.get(pk=pk)
+        return render(request, 'menu_item.html', {'menu_item': menu_item})
+    else:
+        messages.error(request, 'You are not logged in')
+        return redirect('home')
 
-
+def delete_item(request, pk):
+    if request.user.is_authenticated:
+        delete_item = Menu.objects.get(id=pk)
+        delete_item.delete()
+        messages.success(request, "Item deleted successfully")
+        return redirect('home')
+    else:
+        messages.success(request, "You must be logged in to delete an item")
+        return redirect('home')

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- <div class="card text-center"> -->
+  
+<div class="card mb-3">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="true" href="#">{{ menu_item.item }}</a>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{ menu_item.imageURL }}" class="img-fluid rounded-end" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+    <h5 class="card-title">{{ menu_item.price }}/=</h5>
+    <p class="card-text">{{ menu_item.description }}</p>
+      </div>
+  <div class="card-footer">
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end m-3">
+    <a href="{% url 'home' %}" class="btn btn-secondary">back</a>
+    <a href="{% url 'menu_item' menu_item.id %}" class="btn btn-primary">update</a>
+    <a href="{% url 'delete_item' menu_item.id %}" class="btn btn-danger">delete</a>
+  </div>
+  </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
