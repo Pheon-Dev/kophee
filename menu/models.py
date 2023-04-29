@@ -15,13 +15,13 @@ class Menu(models.Model):
     image = models.ImageField(upload_to='images/')
     
     def __str__(self):
-        return(f"{self.item} {self.price} {self.description} {self.image}")
+        return(f"{self.price} {self.item}")
     
 class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     table = models.ForeignKey(Table, on_delete=models.CASCADE)
     quantity = models.IntegerField()
-    menu_item = models.TextField()
+    menu_item = models.ForeignKey(Menu, on_delete=models.DO_NOTHING)
     
     def __str__(self):
         return(f"{self.table} {self.menu_item} {self.quantity}")
