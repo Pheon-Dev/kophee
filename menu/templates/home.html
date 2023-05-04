@@ -20,7 +20,14 @@
           <p class="card-text">{{ menu.description }}</p>
         </div>
         <div class="card-footer">
-          <a href="#" class="btn btn-primary">order</a>
+          <!-- <a href="#" class="btn btn-primary">order</a> -->
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <a href="{% url 'order_item' menu.id %}" class="btn btn-primary">order</a>
+            <!-- order -->
+          </button>
+
+
         </div>
       </div>
     </div>

@@ -87,3 +87,11 @@ def update_item(request, pk):
     else:
         messages.success(request, "You must be logged in to update an item ...")
         return redirect('home')
+
+def order_item(request, pk):
+    if request.user.is_authenticated:
+        item = Menu.objects.get(id=pk)
+        return render(request, 'order.html', {'item':item})
+    else:
+        messages.success(request, "You must be logged in to update an item ...")
+        return redirect('home')
