@@ -27,6 +27,23 @@ def logout_user(request):
     messages.success(request, 'Logged out successfully')
     return redirect('home')
 
+def login_user(request):
+    # if request.method == 'POST':
+    #     form = SignUpForm(request.POST)
+    #     if form.is_valid():
+    #         form.save()
+    #         # Authenticate and login
+    #         username = form.cleaned_data['username']
+    #         password = form.cleaned_data['password1']
+    #         user = authenticate(username=username, password=password)
+    #         login(request, user)
+    #         messages.success(request, "You have successfully registered! Welcome")
+    #         return redirect('home')
+    # else:
+    #     form = SignUpForm()
+    #     return render(request, 'register.html', {'form': form})
+    return render(request, 'login.html', {})
+
 def register_user(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -49,7 +66,7 @@ def menu_item(request, pk):
         menu_item = Menu.objects.get(pk=pk)
         return render(request, 'menu_item.html', {'menu_item': menu_item})
     else:
-        messages.error(request, 'You are not logged in')
+        # messages.error(request, 'You are not logged in')
         return redirect('home')
 
 def delete_item(request, pk):
@@ -89,9 +106,10 @@ def update_item(request, pk):
         return redirect('home')
 
 def order_item(request, pk):
-    if request.user.is_authenticated:
-        item = Menu.objects.get(id=pk)
-        return render(request, 'order.html', {'item':item})
-    else:
-        messages.success(request, "You must be logged in to update an item ...")
-        return redirect('home')
+    pass
+    # if request.user.is_authenticated:
+    #     item = Menu.objects.get(id=pk)
+    #     return render(request, 'order.html', {'item':item})
+    # else:
+    #     messages.success(request, "You must be logged in to update an item ...")
+    #     return redirect('home')

@@ -2,7 +2,6 @@
 
 {% block content %}
 
-{% if user.is_authenticated %}
 {% if menu %}
 <div class="row row-cols-1 row-cols-md-3 g-4">
     
@@ -15,18 +14,21 @@
         <a href="{% url 'menu_item' menu.id %}">
           <img src="{{ menu.imageURL }}" class="card-img-bottom" alt="...">
         </a>
+
         <div class="card-body">
           <h5 class="card-title">{{ menu.price }}/=</h5>
           <p class="card-text">{{ menu.description }}</p>
         </div>
+
         <div class="card-footer">
           <!-- <a href="#" class="btn btn-primary">order</a> -->
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            <a href="{% url 'order_item' menu.id %}" class="btn btn-primary">order</a>
-            <!-- order -->
+            <!-- <a href="{% url 'order_item' menu.id %}" class="btn btn-primary">order</a> -->
+            order
           </button>
-
+          {% block modal %}
+          {% endblock %}
 
         </div>
       </div>
@@ -36,27 +38,29 @@
 </div>
 {% endif %}
 
-{% else %}
+<!-- {% if user.is_authenticated %} -->
+<!-- <br /> -->
+<!-- {% else %} -->
 
-<div class="col-md-6 offset-md-3">
-<h1>Login</h1>
-<br/>
+<!-- <div class="col-md-6 offset-md-3"> -->
+<!-- <h1>Login</h1> -->
+<!-- <br/> -->
+<!---->
+<!-- <form method="POST" action="{% url 'home' %}"> -->
+<!-- 	{% csrf_token %} -->
+<!---->
+<!--   <div class="mb-3"> -->
+<!--     <input type="text" class="form-control" name="username", placeholder="Username" required> -->
+<!--      -->
+<!--   </div><br/> -->
+<!--   <div class="mb-3"> -->
+<!--     <input type="password" class="form-control" name="password", placeholder="Password" required> -->
+<!--   </div> -->
+<!--   <br/> -->
+<!--   <button type="submit" class="btn btn-secondary">Login</button> -->
+<!---->
+<!-- </form> -->
 
-<form method="POST" action="{% url 'home' %}">
-	{% csrf_token %}
-
-  <div class="mb-3">
-    <input type="text" class="form-control" name="username", placeholder="Username" required>
-    
-  </div><br/>
-  <div class="mb-3">
-    <input type="password" class="form-control" name="password", placeholder="Password" required>
-  </div>
-  <br/>
-  <button type="submit" class="btn btn-secondary">Login</button>
-
-</form>
-
-{% endif %}
+<!-- {% endif %} -->
 
 {% endblock %}
